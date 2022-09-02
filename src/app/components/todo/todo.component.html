@@ -1,0 +1,30 @@
+<mat-card class="todo-container">
+  <mat-card-content>
+    <div>
+      <mat-checkbox
+        (change)="toggleInput(todo)"
+        color="primary"
+        [checked]="todo.complete"
+      ></mat-checkbox>
+    </div>
+    <textarea
+      id="description"
+      matInput
+      [(ngModel)]="todo.description"
+      placeholder="todo description"
+      #todoInput
+      rows="1"
+      [class.strike-through]="todo.complete"
+    ></textarea>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="editTodo(todo, todoInput.value)"
+    >
+      save
+    </button>
+  </mat-card-content>
+  <button mat-button (click)="deleteTodo(todo)">
+    <mat-icon color="primary">delete</mat-icon>
+  </button>
+</mat-card>

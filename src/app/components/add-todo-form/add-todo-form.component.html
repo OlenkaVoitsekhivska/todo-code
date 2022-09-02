@@ -1,0 +1,21 @@
+<mat-card>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="3"
+        [(ngModel)]="todo"
+        name="todo"
+        placeholder="Write todo here..."
+      ></textarea>
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+            <mat-label>Pick a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+    <button mat-raised-button color="accent">Add todo</button>
+  </form>
+</mat-card>

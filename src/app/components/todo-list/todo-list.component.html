@@ -1,0 +1,9 @@
+<app-add-todo-form (onAddTodo)="addTodo($event)"></app-add-todo-form>
+
+<app-todo
+  *ngFor="let todo of todolist"
+  [todo]="todo"
+  (onDeleteTodo)="deleteTodo($event)"
+  (onEditTodo)="editTodo($event)"
+  (onToggleComplete)="toggleComplete($event)"
+></app-todo>
