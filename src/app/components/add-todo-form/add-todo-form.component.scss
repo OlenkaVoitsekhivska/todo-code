@@ -1,17 +1,13 @@
-mat-card{
-    margin:50px 0;
-}
+mat-card {
+  margin: 50px 0;
 
-form{
+  form {
     display: flex;
     flex-direction: column;
-}
 
-button{
-    display: block;
-    width: 150px;
-}
-
-input{
-    box-sizing: border-box;
+    button {
+      display: block;
+      width: 150px;
+    }
+  }
 }

@@ -24,7 +24,7 @@ export class AddTodoFormComponent implements OnInit {
       complete:false
     }
     this.onAddTodo.emit(newTodo);
-   
+    this.todo='';
   }
 
 }

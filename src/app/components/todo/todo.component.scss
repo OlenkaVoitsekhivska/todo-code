@@ -1,25 +1,25 @@
-mat-card{
+mat-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
     width: 100%;
-}
 
-mat-checkbox{
-    margin-right: 10px;
-}
+    mat-card-content {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
 
-mat-card-content{
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+        mat-checkbox {
+            margin-right: 10px;
+        }
 
-textarea{
-    width: 80%;
+        textarea {
+            width: 80%;
+        }
+    }
 }
 
 .strike-through{

@@ -4,8 +4,7 @@
       <mat-checkbox
         (change)="toggleInput(todo)"
         color="primary"
-        [checked]="todo.complete"
-      ></mat-checkbox>
+        [checked]="todo.complete"></mat-checkbox>
     </div>
     <textarea
       id="description"
@@ -14,14 +13,13 @@
       placeholder="todo description"
       #todoInput
       rows="1"
-      [class.strike-through]="todo.complete"
-    ></textarea>
+      (input)="onInput(todoInput.value)"
+      [class.strike-through]="todo.complete"></textarea>
     <button
       mat-raised-button
       color="accent"
-      (click)="editTodo(todo, todoInput.value)"
-    >
-      save
+      (click)="editTodo(todo, todoInput.value)">
+      {{ todo.description !== originalTodo.description ? 'save' : 'edit' }}
     </button>
   </mat-card-content>
   <button mat-button (click)="deleteTodo(todo)">

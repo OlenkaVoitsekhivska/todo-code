@@ -12,9 +12,14 @@ export class TodoComponent implements OnInit {
   @Output() onDeleteTodo: EventEmitter<Todo> = new EventEmitter();
   @Output() onEditTodo: EventEmitter<Todo> = new EventEmitter();
 
+  originalTodo!: Todo;
+  inputVal: string = '';
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.originalTodo = { ...this.todo };
+  }
 
   toggleInput(todo: Todo) {
     this.onToggleComplete.emit(todo);
@@ -22,6 +27,10 @@ export class TodoComponent implements OnInit {
 
   deleteTodo(todo: Todo) {
     this.onDeleteTodo.emit(todo);
+  }
+
+  onInput(todoInput: string) {
+    this.inputVal = todoInput;
   }
 
   editTodo(todo: Todo, val: string) {
