@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/models';
 
@@ -14,6 +15,8 @@ export class TodoComponent implements OnInit {
 
   originalTodo!: Todo;
   inputVal: string = '';
+
+  showEditableInput: boolean = false;
 
   constructor() {}
 
@@ -39,5 +42,10 @@ export class TodoComponent implements OnInit {
       description: val,
       complete: todo.complete,
     });
+    this.toggleShowEditableInput();
+  }
+
+  toggleShowEditableInput() {
+    this.showEditableInput = !this.showEditableInput;
   }
 }

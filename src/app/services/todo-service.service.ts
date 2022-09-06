@@ -11,7 +11,6 @@ const httpOptions = {
   }),
 };
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +24,10 @@ export class TodoServiceService {
 
   getTodoUpdateListener() {
     return this.todosUpd.asObservable();
+  }
+
+  composeUrl(id: string): string {
+    return `${this.apiUrl}/${id}`;
   }
 
   getTodos() {
@@ -45,7 +48,7 @@ export class TodoServiceService {
   }
 
   deleteTodo(todo: Todo) {
-    const url = `${this.apiUrl}/` + todo.id;
+    const url = this.composeUrl(todo.id);
     this.http.delete(url).subscribe(() => {
       this.todos = this.todos.filter(todoDel => todoDel.id !== todo.id);
       this.todosUpd.next([...this.todos]);
@@ -53,7 +56,7 @@ export class TodoServiceService {
   }
 
   toggleComplete(todo: Todo) {
-    const url = `${this.apiUrl}/` + todo.id;
+    const url = this.composeUrl(todo.id);
     this.http
       .patch<{ message: string; id: string; complete: boolean }>(
         url,
@@ -76,7 +79,7 @@ export class TodoServiceService {
   }
 
   editTodo(todo: Todo) {
-    const url = `${this.apiUrl}/` + todo.id;
+    const url = this.composeUrl(todo.id);
     this.http
       .put<{ message: string; description: string }>(url, todo)
       .subscribe(todoEdited => {

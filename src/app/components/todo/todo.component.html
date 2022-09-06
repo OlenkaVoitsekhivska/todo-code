@@ -1,26 +1,36 @@
 <mat-card class="todo-container">
   <mat-card-content>
-    <div>
-      <mat-checkbox
-        (change)="toggleInput(todo)"
-        color="primary"
-        [checked]="todo.complete"></mat-checkbox>
+    <mat-checkbox
+      (change)="toggleInput(todo)"
+      color="primary"
+      [checked]="todo.complete"></mat-checkbox>
+
+    <div *ngIf="!showEditableInput; else showEdit" class="todo-inedit">
+      <p>{{ todo.description }}</p>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="toggleShowEditableInput()">
+        edit
+      </button>
     </div>
-    <textarea
-      id="description"
-      matInput
-      [(ngModel)]="todo.description"
-      placeholder="todo description"
-      #todoInput
-      rows="1"
-      (input)="onInput(todoInput.value)"
-      [class.strike-through]="todo.complete"></textarea>
-    <button
-      mat-raised-button
-      color="accent"
-      (click)="editTodo(todo, todoInput.value)">
-      {{ todo.description !== originalTodo.description ? 'save' : 'edit' }}
-    </button>
+    <ng-template #showEdit>
+      <textarea
+        id="description"
+        matInput
+        [(ngModel)]="todo.description"
+        placeholder="todo description"
+        #todoInput
+        rows="1"
+        (input)="onInput(todoInput.value)"
+        [class.strike-through]="todo.complete"></textarea>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="editTodo(todo, todoInput.value)">
+        save
+      </button>
+    </ng-template>
   </mat-card-content>
   <button mat-button (click)="deleteTodo(todo)">
     <mat-icon color="primary">delete</mat-icon>
