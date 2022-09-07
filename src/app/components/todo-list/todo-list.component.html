@@ -1,6 +1,6 @@
 <app-add-todo-form (onAddTodo)="addTodo($event)"></app-add-todo-form>
 
-<mat-tab-group *ngIf="subject | async as todos">
+<mat-tab-group *ngIf="todoSubject$ | async as todos">
   <mat-tab label="All">
     <app-todo
       *ngFor="let all of todos"

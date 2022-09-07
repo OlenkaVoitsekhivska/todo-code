@@ -13,13 +13,13 @@ export class TodoListComponent implements OnInit {
 
   todolist: Todo[] = [];
 
-  subject!: Observable<Todo[]>;
+  todoSubject$!: Observable<Todo[]>;
 
   constructor(private todoService: TodoServiceService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos();
-    this.subject = this.todoService.getTodoUpdateListener();
+    this.todoSubject$ = this.todoService.getTodoUpdateListener();
   }
 
   listTodos() {

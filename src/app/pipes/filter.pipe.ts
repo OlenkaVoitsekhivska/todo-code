@@ -6,9 +6,6 @@ import { Todo } from '../../models';
 })
 export class FilterPipe implements PipeTransform {
   transform(todos: Todo[], filter: boolean): Todo[] {
-    if (filter) {
-      return [...todos].filter(todo => todo.complete);
-    }
-    return [...todos].filter(todo => !todo.complete);
+    return [...todos].filter(todo => (filter ? todo.complete : !todo.complete));
   }
 }

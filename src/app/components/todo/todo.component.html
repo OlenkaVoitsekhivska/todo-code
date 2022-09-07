@@ -5,8 +5,8 @@
       color="primary"
       [checked]="todo.complete"></mat-checkbox>
 
-    <div *ngIf="!showEditableInput; else showEdit" class="todo-inedit">
-      <p>{{ todo.description }}</p>
+    <div *ngIf="!showEditableInput; else showEdit" class="todo">
+      <p [class.strike-through]="todo.complete">{{ todo.description }}</p>
       <button
         mat-raised-button
         color="accent"
@@ -14,7 +14,7 @@
         edit
       </button>
     </div>
-    <ng-template #showEdit>
+    <ng-template #showEdit class="todo">
       <textarea
         id="description"
         matInput

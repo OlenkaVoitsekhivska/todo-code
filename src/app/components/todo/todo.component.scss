@@ -17,23 +17,30 @@ mat-card {
         }
 
         textarea {
-            width: 80%;
+            box-sizing: border-box;
+            margin-left: 15px;
         }
     }
 }
 
-.strike-through{
+.strike-through {
     text-decoration: line-through;
 }
 
-.todo-inedit{
+.todo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    p{
+
+    p {
         width: 80%;
-        margin-bottom: 0;
-        margin-left: 17px;
+        margin: 0 0 0 15px;
     }
+}
+
+textarea.mat-input-element {
+
+    margin: 0;
+    padding: 0;
 }
