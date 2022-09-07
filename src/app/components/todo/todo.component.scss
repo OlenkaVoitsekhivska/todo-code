@@ -1,27 +1,46 @@
-mat-card{
+mat-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
     width: 100%;
+
+    mat-card-content {
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        mat-checkbox {
+            margin-right: 10px;
+        }
+
+        textarea {
+            box-sizing: border-box;
+            margin-left: 15px;
+        }
+    }
 }
 
-mat-checkbox{
-    margin-right: 10px;
+.strike-through {
+    text-decoration: line-through;
 }
 
-mat-card-content{
-    margin: 0;
+.todo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    p {
+        width: 80%;
+        margin: 0 0 0 15px;
+    }
 }
 
-textarea{
-    width: 80%;
-}
+textarea.mat-input-element {
 
-.strike-through{
-    text-decoration: line-through;
+    margin: 0;
+    padding: 0;
 }

@@ -1,38 +1,25 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy
-} from '@angular/core';
-import { Todo } from 'src/models';
-import { TodoServiceService } from 'src/app/services/todo-service.service';
-import { Subscription, map } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+import { Todo } from '../../../models';
+import { TodoServiceService } from '../../services/todo-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
-export class TodoListComponent implements OnInit, OnDestroy {
+export class TodoListComponent implements OnInit {
   @Input() todo!: Todo;
 
   todolist: Todo[] = [];
-  private subscr!: Subscription;
+
+  todoSubject$!: Observable<Todo[]>;
 
   constructor(private todoService: TodoServiceService) {}
 
   ngOnInit(): void {
     this.todoService.getTodos();
-    this.subscr = this.todoService
-      .getTodoUpdateListener()
-      .subscribe((todos: Todo[]) => {
-        this.todolist = todos;
-      });
-    console.log('this is todolist', this.todolist);
-  }
-
-  ngOnDestroy(): void {
-    this.subscr.unsubscribe();
+    this.todoSubject$ = this.todoService.getTodoUpdateListener();
   }
 
   listTodos() {
@@ -52,7 +39,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   editTodo(todo: Todo) {
-    console.log('this is the edited todo', todo);
     this.todoService.editTodo(todo);
   }
 }

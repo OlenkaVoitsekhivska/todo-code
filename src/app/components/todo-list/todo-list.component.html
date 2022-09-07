@@ -1,9 +1,28 @@
 <app-add-todo-form (onAddTodo)="addTodo($event)"></app-add-todo-form>
 
-<app-todo
-  *ngFor="let todo of todolist"
-  [todo]="todo"
-  (onDeleteTodo)="deleteTodo($event)"
-  (onEditTodo)="editTodo($event)"
-  (onToggleComplete)="toggleComplete($event)"
-></app-todo>
+<mat-tab-group *ngIf="todoSubject$ | async as todos">
+  <mat-tab label="All">
+    <app-todo
+      *ngFor="let all of todos"
+      [todo]="all"
+      (onDeleteTodo)="deleteTodo($event)"
+      (onEditTodo)="editTodo($event)"
+      (onToggleComplete)="toggleComplete($event)"></app-todo>
+  </mat-tab>
+  <mat-tab label="Active">
+    <app-todo
+      *ngFor="let incomplete of todos | filter: false"
+      [todo]="incomplete"
+      (onDeleteTodo)="deleteTodo($event)"
+      (onEditTodo)="editTodo($event)"
+      (onToggleComplete)="toggleComplete($event)"></app-todo>
+  </mat-tab>
+  <mat-tab label="Completed">
+    <app-todo
+      *ngFor="let complete of todos | filter: true"
+      [todo]="complete"
+      (onDeleteTodo)="deleteTodo($event)"
+      (onEditTodo)="editTodo($event)"
+      (onToggleComplete)="toggleComplete($event)"></app-todo>
+  </mat-tab>
+</mat-tab-group>

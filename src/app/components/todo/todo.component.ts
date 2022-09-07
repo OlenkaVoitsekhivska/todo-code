@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/models';
 
@@ -12,9 +13,16 @@ export class TodoComponent implements OnInit {
   @Output() onDeleteTodo: EventEmitter<Todo> = new EventEmitter();
   @Output() onEditTodo: EventEmitter<Todo> = new EventEmitter();
 
+  originalTodo!: Todo;
+  inputVal: string = '';
+
+  showEditableInput: boolean = false;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.originalTodo = { ...this.todo };
+  }
 
   toggleInput(todo: Todo) {
     this.onToggleComplete.emit(todo);
@@ -24,11 +32,20 @@ export class TodoComponent implements OnInit {
     this.onDeleteTodo.emit(todo);
   }
 
+  onInput(todoInput: string) {
+    this.inputVal = todoInput;
+  }
+
   editTodo(todo: Todo, val: string) {
     this.onEditTodo.emit({
       id: todo.id,
       description: val,
       complete: todo.complete,
     });
+    this.toggleShowEditableInput();
+  }
+
+  toggleShowEditableInput() {
+    this.showEditableInput = !this.showEditableInput;
   }
 }
