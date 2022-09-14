@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Todo } from 'src/models';
+import { Todo } from 'src/app/models/todo';
 
 @Component({
   selector: 'app-todo',
@@ -15,9 +16,7 @@ export class TodoComponent implements OnInit {
 
   originalTodo!: Todo;
   inputVal: string = '';
-
   showEditableInput: boolean = false;
-
   constructor() {}
 
   ngOnInit() {

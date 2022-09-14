@@ -39,14 +39,16 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:prettier/recommended"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:prettier/recommended"],
       "rules": {
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": [
+          "error",
+          { "parser": "angular" },
+          {
+            "usePrettierrc": false
+          }
+        ]
       }
     }
   ]

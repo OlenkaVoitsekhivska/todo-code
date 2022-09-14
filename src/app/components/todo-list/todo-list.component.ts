@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from '../../../models';
+import { Todo } from '../../models/todo';
 import { TodoServiceService } from '../../services/todo-service.service';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,7 +16,10 @@ export class TodoListComponent implements OnInit {
 
   todoSubject$!: Observable<Todo[]>;
 
-  constructor(private todoService: TodoServiceService) {}
+  constructor(
+    private todoService: TodoServiceService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.todoService.getTodos();
@@ -28,6 +32,7 @@ export class TodoListComponent implements OnInit {
 
   addTodo(todo: Todo) {
     this.todoService.addTodo(todo);
+    this.toastr.success('Todo successfully added');
   }
 
   toggleComplete(todoToggle: Todo) {

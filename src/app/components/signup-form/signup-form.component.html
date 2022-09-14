@@ -1,0 +1,87 @@
+<mat-card>
+  <form
+    (ngSubmit)="onSubmit(signupForm); signupForm.reset()"
+    #signupForm="ngForm">
+    <mat-form-field
+      [class.mat-form-field-invalid]="username.invalid && username.dirty">
+      <label for="username"></label>
+      <input
+        matInput
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Username"
+        #username="ngModel"
+        ngModel
+        required />
+    </mat-form-field>
+    <mat-form-field
+      [class.mat-form-field-invalid]="email.invalid && email.dirty">
+      <label for="email"></label>
+      <input
+        matInput
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        #email="ngModel"
+        ngModel
+        email
+        required />
+    </mat-form-field>
+    <mat-error *ngIf="!email.valid && email.dirty">Invalid email</mat-error>
+    <mat-form-field
+      [class.mat-form-field-invalid]="password.invalid && password.dirty">
+      <label for="password"></label>
+      <input
+        matInput
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        #password="ngModel"
+        ngModel
+        required />
+    </mat-form-field>
+    <mat-form-field
+      [class.mat-form-field-invalid]="passwordRep.invalid && passwordRep.dirty">
+      <label for="passwordRep"></label>
+      <input
+        matInput
+        type="password"
+        id="passwordRep"
+        name="passwordRep"
+        placeholder="Confirm password"
+        #passwordRep="ngModel"
+        ngModel
+        required />
+    </mat-form-field>
+    <mat-error *ngIf="passwordRep.value !== password.value"
+      >Password mismatch!</mat-error
+    >
+    <mat-form-field>
+      <label for="phone"></label>
+      <input
+        matInput
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="Phone"
+        #phone="ngModel"
+        ngModel />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="
+        password.value !== passwordRep.value ||
+        !username.value ||
+        !email.value ||
+        !password.value ||
+        !passwordRep.value
+      ">
+      Signup
+    </button>
+  </form>
+</mat-card>

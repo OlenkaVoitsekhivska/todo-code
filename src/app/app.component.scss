@@ -5,4 +5,6 @@ main{
 }
 mat-toolbar{
     background: linear-gradient(90deg, #673AB7 0%, #B83B5E  30%, #F08A5D 60%, #fff370 80%,  #FFD740 100%); 
+    display: flex;
+    justify-content: space-between;
 }
