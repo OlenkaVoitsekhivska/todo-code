@@ -1,8 +1,29 @@
 <body>
   <mat-toolbar class="mat-h1">
     <span>My Todos</span>
+    <nav>
+      <a mat-button routerLink="/home" routerLinkActive="mat-primary">Home</a>
+      <a mat-button routerLink="/todos" routerLinkActive="mat-primary">Todos</a>
+      <a
+        *ngIf="!isLogged"
+        mat-button
+        routerLink="/signup"
+        routerLinkActive="mat-primary"
+        >Signup</a
+      >
+      <a
+        *ngIf="!isLogged"
+        mat-button
+        routerLink="/login"
+        routerLinkActive="mat-primary"
+        >Login</a
+      >
+      <button mat-button *ngIf="isLogged" type="button" (click)="logout()">
+        Logout
+      </button>
+    </nav>
   </mat-toolbar>
   <main>
-    <app-todo-list></app-todo-list>
+    <router-outlet></router-outlet>
   </main>
 </body>

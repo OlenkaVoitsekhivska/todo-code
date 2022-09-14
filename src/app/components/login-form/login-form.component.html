@@ -1,0 +1,77 @@
+<!-- <mat-card>
+  <form (ngSubmit)="onSubmit(loginForm); loginForm.reset()" #loginForm="ngForm">
+    <mat-form-field>
+      <label for="email"></label>
+      <input
+        matInput
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        ngModel
+        #email="ngModel"
+        required />
+    </mat-form-field>
+    <mat-form-field>
+      <label for="password"></label>
+      <input
+        matInput
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        ngModel
+        #password="ngModel"
+        required />
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Sign-in</button>
+  </form>
+</mat-card> -->
+
+<mat-card>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field
+      [class.mat-form-field-invalid]="
+        loginForm.get('email')?.invalid && loginForm.get('email')?.dirty
+      ">
+      <label for="email"></label>
+      <input
+        matInput
+        type="email"
+        id="email"
+        formControlName="email"
+        placeholder="Email" />
+    </mat-form-field>
+    <mat-error
+      *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.dirty"
+      >Invalid email</mat-error
+    >
+    <mat-form-field
+      [class.mat-form-field-invalid]="
+        loginForm.get('password')?.invalid && loginForm.get('password')?.dirty
+      ">
+      <label for="password"></label>
+      <input
+        matInput
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Password" />
+    </mat-form-field>
+    <mat-error
+      *ngIf="
+        !loginForm.get('password')?.valid && loginForm.get('password')?.dirty
+      "
+      >Invalid password</mat-error
+    >
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="
+        loginForm.get('email')?.invalid || loginForm.get('password')?.invalid
+      ">
+      Sign-in
+    </button>
+  </form>
+</mat-card>

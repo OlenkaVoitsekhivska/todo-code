@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Todo } from 'src/models';
+import { Todo } from 'src/app/models/todo';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
@@ -15,28 +15,22 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TodoServiceService {
-  private apiUrl = environment.apiUrl;
-
+  private apiUrl = `${environment.apiUrl}/todos`;
   private todos: Todo[] = [];
   private todosUpd = new Subject<Todo[]>();
-
   constructor(private http: HttpClient) {}
-
   getTodoUpdateListener() {
     return this.todosUpd.asObservable();
   }
-
   composeUrl(id: string): string {
     return `${this.apiUrl}/${id}`;
   }
-
   getTodos() {
     this.http.get<Todo[]>(this.apiUrl).subscribe(todos => {
       this.todos = todos;
       this.todosUpd.next([...this.todos]);
     });
   }
-
   addTodo(todo: Todo) {
     this.http
       .post<{ message: string; id: string }>(this.apiUrl, todo)
@@ -46,7 +40,6 @@ export class TodoServiceService {
         this.todosUpd.next([...this.todos]);
       });
   }
-
   deleteTodo(todo: Todo) {
     const url = this.composeUrl(todo.id);
     this.http.delete(url).subscribe(() => {
@@ -54,7 +47,6 @@ export class TodoServiceService {
       this.todosUpd.next([...this.todos]);
     });
   }
-
   toggleComplete(todo: Todo) {
     const url = this.composeUrl(todo.id);
     this.http

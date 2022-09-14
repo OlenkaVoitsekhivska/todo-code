@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Todo } from 'src/models';
+import { Todo } from 'src/app/models/todo';
 
 @Component({
   selector: 'app-add-todo-form',
@@ -24,6 +24,5 @@ export class AddTodoFormComponent implements OnInit {
       complete: false,
     };
     this.onAddTodo.emit(newTodo);
-    this.todo = '';
   }
 }
